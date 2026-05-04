@@ -4,6 +4,7 @@ import meal1 from "@/assets/meal-1.jpg";
 import meal2 from "@/assets/meal-2.jpg";
 
 import { Leaf, Clock, Heart, Truck, MessageCircle, Instagram, Check, ClipboardCheck } from "lucide-react";
+import logo from "@/public/logo.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -29,8 +30,8 @@ function Index() {
       {/* Nav */}
       <header className="absolute top-0 left-0 right-0 z-20">
         <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 text-background">
-            <Leaf className="h-6 w-6" />
+          <a href="#" className="flex items-center gap-3 text-background">
+            <img src={logo} alt="Logo Irene Comida Saudável" className="h-10 w-auto" />
             <span className="font-display text-xl font-semibold">Irene Comida Saudável</span>
           </a>
           <a
@@ -337,8 +338,8 @@ function Index() {
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-12">
         <div className="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <Leaf className="h-5 w-5 text-accent" />
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Logo Irene Comida Saudável" className="h-8 w-auto brightness-0 invert" />
             <span className="font-display text-lg">Irene Comida Saudável</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
