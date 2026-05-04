@@ -49,4 +49,5 @@ Desenvolvido com foco em excelência e resultados.
 
 ---
 
-Desenvolvedor Kayohan Costa 
+Desenvolvedor Kayohan Costa  
+LinkedIn: www.linkedin.com/in/kayohancostadev
