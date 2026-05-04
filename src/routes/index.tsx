@@ -4,19 +4,19 @@ import meal1 from "@/assets/meal-1.jpg";
 import meal2 from "@/assets/meal-2.jpg";
 
 import { Leaf, Clock, Heart, Truck, MessageCircle, Instagram, Check, ClipboardCheck } from "lucide-react";
-import logo from "@/public/logo.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Marmitas Fitness em Fortaleza | Comida Saudável e Caseira" },
+      { title: "Irene comidas fitness Fortaleza" },
       {
         name: "description",
         content:
           "Recupere seu tempo com marmitas saudáveis, frescas e saborosas em Fortaleza. Cardápio personalizado e entrega refrigerada para sua rotina.",
       },
     ],
+    links: [{ rel: "icon", type: "image/png", href: "/favicon.png?v=2" }],
   }),
 });
 
@@ -30,8 +30,8 @@ function Index() {
       {/* Nav */}
       <header className="absolute top-0 left-0 right-0 z-20">
         <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3 text-background">
-            <img src={logo} alt="Logo Irene Comida Saudável" className="h-10 w-auto" />
+          <a href="#" className="flex items-center gap-2 text-background">
+            <Leaf className="h-6 w-6" />
             <span className="font-display text-xl font-semibold">Irene Comida Saudável</span>
           </a>
           <a
@@ -335,24 +335,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-primary text-primary-foreground py-12">
-        <div className="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <img src={logo} alt="Logo Irene Comida Saudável" className="h-8 w-auto brightness-0 invert" />
-            <span className="font-display text-lg">Irene Comida Saudável</span>
-          </div>
-          <div className="flex items-center gap-6 text-sm">
-            <a href="https://www.instagram.com/irenecomidasaudavel_/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition">
-              <Instagram className="h-4 w-4" /> @irenecomidasaudavel_
-            </a>
-            <a href={waLink("Olá Irene!")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition">
-              <MessageCircle className="h-4 w-4" /> WhatsApp
-            </a>
-          </div>
-          <p className="text-xs text-primary-foreground/60">Fortaleza · CE</p>
-        </div>
-      </footer>
 
       {/* Floating WhatsApp */}
       <a
@@ -364,6 +346,35 @@ function Index() {
       >
         <MessageCircle className="h-6 w-6" />
       </a>
+      {/* Footer */}
+      <footer className="bg-primary py-12 text-primary-foreground/60 border-t border-primary-foreground/10">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+            <div className="flex items-center gap-2">
+              <Leaf className="h-6 w-6 text-accent" />
+              <span className="font-display text-xl font-semibold text-primary-foreground">Irene Comida Saudável</span>
+            </div>
+            <div className="flex items-center gap-8 text-sm">
+              <a href="https://www.instagram.com/irenecomidasaudavel_/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition">
+                <Instagram className="h-4 w-4" /> @irenecomidasaudavel_
+              </a>
+              <a href={waLink("Olá Irene!")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition">
+                <MessageCircle className="h-4 w-4" /> WhatsApp
+              </a>
+              <span className="text-xs opacity-50">Fortaleza · CE</span>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-t border-primary-foreground/5 pt-8 text-sm">
+            <p>
+              © {new Date().getFullYear()} Irene Comida Saudável. Todos os direitos reservados.
+            </p>
+            <p>
+              Desenvolvido por <a href="https://kayohancostadev.vercel.app/" target="_blank" rel="noopener noreferrer" className="font-semibold text-accent hover:underline transition">Kayohan Costa</a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

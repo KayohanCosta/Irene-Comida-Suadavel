@@ -29,7 +29,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Irene Comida Saudável | Marmitas Fitness em Fortaleza" },
+      { title: "Irene comidas fitness Fortaleza" },
       { name: "description", content: "Marmitas saudáveis, frescas e saborosas entregues em Fortaleza." },
       { name: "author", content: "Irene Comida Saudável" },
       { property: "og:title", content: "Irene Comida Saudável" },
@@ -42,6 +42,11 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon.png?v=2",
       },
     ],
   }),
