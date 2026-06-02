@@ -4,6 +4,9 @@ import meal1 from "@/assets/meal-1.jpg";
 import meal2 from "@/assets/meal-2.jpg";
 
 import { Leaf, Clock, Heart, Truck, MessageCircle, Instagram, Check, ClipboardCheck } from "lucide-react";
+import { useState } from "react";
+import MenuSection from "@/components/cardapio/MenuSection";
+import VirtualAssistant from "@/components/cardapio/VirtualAssistant";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -25,6 +28,15 @@ const waLink = (msg: string) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
 
 function Index() {
+  const [activeComboGoal, setActiveComboGoal] = useState<number | null>(null);
+
+  const handleSelectCombo = (qty: number) => {
+    setActiveComboGoal(qty);
+    setTimeout(() => {
+      document.getElementById("cardapio-interativo")?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Nav */}
@@ -76,12 +88,14 @@ function Index() {
                 Pedir pelo WhatsApp
               </a>
               <a
-                href="https://www.instagram.com/irenecomidasaudavel_/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#cardapio-interativo"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("cardapio-interativo")?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="inline-flex items-center gap-2 rounded-full border border-background/30 px-6 py-4 text-sm font-medium hover:bg-background/10 transition"
               >
-                <Instagram className="h-4 w-4" /> Ver cardápio no Instagram
+                <Leaf className="h-4 w-4 text-accent" /> Ver Cardápio Interativo
               </a>
             </div>
             <div className="mt-10 flex items-center gap-6 text-sm text-background/70">
@@ -208,10 +222,10 @@ function Index() {
 
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Iniciante", subtitle: "Unidade", desc: "Ideal para testar nosso tempero e se apaixonar pela qualidade.", highlight: false, cta: "Pedir agora" },
-              { title: "Semanal", subtitle: "7 marmitas", desc: "Uma semana de foco total e zero preocupação com o mercado.", highlight: false, cta: "Ativar plano" },
-              { title: "Quinzena", subtitle: "15 marmitas", desc: "O equilíbrio perfeito entre variedade e economia para sua rotina.", highlight: true, cta: "Melhor Custo-Benefício" },
-              { title: "Mensal", subtitle: "30 marmitas", desc: "Transformação completa: 30 dias de alimentação de alta performance.", highlight: false, cta: "Mudar minha vida" },
+              { title: "Iniciante", subtitle: "Unidade", desc: "Ideal para testar nosso tempero e se apaixonar pela qualidade.", highlight: false, cta: "Pedir agora", quantity: 1 },
+              { title: "Semanal", subtitle: "7 marmitas", desc: "Uma semana de foco total e zero preocupação com o mercado.", highlight: false, cta: "Ativar plano", quantity: 7 },
+              { title: "Quinzena", subtitle: "15 marmitas", desc: "O equilíbrio perfeito entre variedade e economia para sua rotina.", highlight: true, cta: "Melhor Custo-Benefício", quantity: 15 },
+              { title: "Mensal", subtitle: "30 marmitas", desc: "Transformação completa: 30 dias de alimentação de alta performance.", highlight: false, cta: "Mudar minha vida", quantity: 30 },
             ].map((c) => (
               <div key={c.title}
                 className={`relative rounded-3xl p-7 border transition flex flex-col ${c.highlight ? "bg-primary text-primary-foreground border-primary shadow-[var(--shadow-glow)]" : "bg-card border-border hover:shadow-[var(--shadow-soft)]"}`}>
@@ -221,10 +235,12 @@ function Index() {
                 <div className={`text-xs uppercase tracking-widest ${c.highlight ? "text-accent" : "text-accent-foreground/70"}`}>{c.title}</div>
                 <div className="mt-3 font-display text-4xl font-semibold">{c.subtitle}</div>
                 <p className={`mt-3 text-sm flex-1 ${c.highlight ? "text-primary-foreground/80" : "text-muted-foreground"}`}>{c.desc}</p>
-                <a href={waLink(`Olá Irene! ${c.cta} 🥗`)} target="_blank" rel="noopener noreferrer"
-                  className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition ${c.highlight ? "bg-whatsapp text-whatsapp-foreground hover:opacity-90" : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"}`}>
+                <button
+                  onClick={() => handleSelectCombo(c.quantity)}
+                  className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition cursor-pointer ${c.highlight ? "bg-whatsapp text-whatsapp-foreground hover:opacity-90" : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"}`}
+                >
                   <MessageCircle className="h-4 w-4" /> {c.cta}
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -234,6 +250,12 @@ function Index() {
           </p>
         </div>
       </section>
+
+      {/* Cardápio Interativo Section */}
+      <MenuSection 
+        initialComboGoal={activeComboGoal} 
+        onCloseComboGoal={() => setActiveComboGoal(null)} 
+      />
 
       {/* Nutritional Plan Section */}
       <section className="py-24 bg-card border-y border-border overflow-hidden relative">
@@ -335,17 +357,8 @@ function Index() {
         </div>
       </section>
 
-
-      {/* Floating WhatsApp */}
-      <a
-        href={waLink("Olá Irene! Quero fazer um pedido 💚")}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Pedir pelo WhatsApp"
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center h-14 w-14 rounded-full bg-whatsapp text-whatsapp-foreground shadow-[var(--shadow-glow)] hover:scale-110 transition"
-      >
-        <MessageCircle className="h-6 w-6" />
-      </a>
+      {/* Floating Interactive Virtual AI Assistant */}
+      <VirtualAssistant />
       {/* Footer */}
       <footer className="bg-primary py-12 text-primary-foreground/60 border-t border-primary-foreground/10">
         <div className="mx-auto max-w-7xl px-6">
