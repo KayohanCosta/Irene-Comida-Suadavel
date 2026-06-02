@@ -19,15 +19,34 @@ export const Route = createFileRoute("/")({
           "Recupere seu tempo com marmitas saudáveis, frescas e saborosas em Fortaleza. Cardápio personalizado e entrega refrigerada para sua rotina.",
       },
       {
+        name: "application-name",
+        content: "Irene Comida Saudável",
+      },
+      {
+        name: "apple-mobile-web-app-title",
+        content: "Irene Comida Saudável",
+      },
+      {
         property: "og:site_name",
         content: "Irene Comida Saudável",
+      },
+      {
+        property: "og:title",
+        content: "Irene Comida Saudável | Fortaleza",
       },
       {
         property: "og:type",
         content: "website",
       },
+      {
+        property: "og:url",
+        content: "https://irenecomidasaudavel.vercel.app/",
+      },
     ],
-    links: [{ rel: "icon", type: "image/png", href: "/favicon.png?v=2" }],
+    links: [
+      { rel: "icon", type: "image/png", href: "/favicon.png?v=2" },
+      { rel: "canonical", href: "https://irenecomidasaudavel.vercel.app/" },
+    ],
   }),
 });
 
