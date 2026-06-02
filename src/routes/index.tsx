@@ -18,6 +18,14 @@ export const Route = createFileRoute("/")({
         content:
           "Recupere seu tempo com marmitas saudáveis, frescas e saborosas em Fortaleza. Cardápio personalizado e entrega refrigerada para sua rotina.",
       },
+      {
+        property: "og:site_name",
+        content: "Irene Comida Saudável",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
     ],
     links: [{ rel: "icon", type: "image/png", href: "/favicon.png?v=2" }],
   }),

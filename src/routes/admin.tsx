@@ -171,10 +171,11 @@ function AdminPage() {
     showToast("Processando e otimizando imagem... ⚙️", "info");
 
     const reader = new FileReader();
-    reader.onload = (event) => {
-      if (event.target?.result) {
+    reader.onload = () => {
+      const result = reader.result;
+      if (result) {
         const img = new Image();
-        img.src = event.target.result as string;
+        img.src = result as string;
         img.onload = () => {
           // Define target max dimension (e.g. 800px width or height is perfect for web menu cards)
           const maxDim = 800;
@@ -206,7 +207,7 @@ function AdminPage() {
             showToast("Imagem carregada e otimizada com sucesso! 📸✨", "success");
           } else {
             // Fallback in case canvas fails
-            setFormImage(event.target.result as string);
+            setFormImage(result as string);
             showToast("Imagem carregada do dispositivo! 📸", "success");
           }
         };
