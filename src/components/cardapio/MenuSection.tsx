@@ -39,9 +39,7 @@ export default function MenuSection({ initialComboGoal = null, onCloseComboGoal 
 
   // Sync initial combo goal if it changes from parent
   useEffect(() => {
-    if (initialComboGoal !== null) {
-      setActiveComboGoal(initialComboGoal);
-    }
+    setActiveComboGoal(initialComboGoal);
   }, [initialComboGoal]);
 
   // Sync stored dishes on mount and window focus (real-time updates from admin tab)
@@ -244,7 +242,7 @@ export default function MenuSection({ initialComboGoal = null, onCloseComboGoal 
           {activeComboGoal !== null ? (
             <div className="rounded-3xl border border-primary/20 bg-primary/5 backdrop-blur-md p-6 sm:p-8 relative overflow-hidden shadow-[var(--shadow-soft)]">
               {/* Progress Glow */}
-              <div className="absolute top-0 right-0 -mt-12 -mr-12 w-32 h-32 rounded-full bg-accent/20 blur-2xl" />
+              <div className="absolute top-0 right-0 -mt-12 -mr-12 w-32 h-32 rounded-full bg-accent/20 blur-2xl pointer-events-none" />
               
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                 <div>

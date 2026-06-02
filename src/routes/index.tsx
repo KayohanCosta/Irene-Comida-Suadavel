@@ -50,7 +50,14 @@ function Index() {
       {/* Nav */}
       <header className="absolute top-0 left-0 right-0 z-20">
         <div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 text-background">
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center gap-2 text-background hover:opacity-90 transition cursor-pointer"
+          >
             <Leaf className="h-6 w-6" />
             <span className="font-display text-xl font-semibold">Irene Comida Saudável</span>
           </a>
@@ -371,10 +378,17 @@ function Index() {
       <footer className="bg-primary py-12 text-primary-foreground/60 border-t border-primary-foreground/10">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
-            <div className="flex items-center gap-2">
+            <a 
+              href="#" 
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="flex items-center gap-2 text-primary-foreground hover:opacity-90 transition cursor-pointer"
+            >
               <Leaf className="h-6 w-6 text-accent" />
-              <span className="font-display text-xl font-semibold text-primary-foreground">Irene Comida Saudável</span>
-            </div>
+              <span className="font-display text-xl font-semibold">Irene Comida Saudável</span>
+            </a>
             <div className="flex items-center gap-8 text-sm">
               <a href="https://www.instagram.com/irenecomidasaudavel_/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-accent transition">
                 <Instagram className="h-4 w-4" /> @irenecomidasaudavel_
