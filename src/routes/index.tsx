@@ -44,7 +44,8 @@ export const Route = createFileRoute("/")({
       },
     ],
     links: [
-      { rel: "icon", type: "image/png", href: "/favicon.png?v=2" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "alternate icon", type: "image/png", href: "/favicon.png?v=2" },
       { rel: "canonical", href: "https://irenecomidasaudavel.vercel.app/" },
     ],
   }),
