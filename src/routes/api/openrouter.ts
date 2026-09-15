@@ -33,10 +33,7 @@ export const Route = createFileRoute("/api/openrouter")({
             },
           });
         } catch {
-          return Response.json(
-            { error: "Failed to contact OpenRouter." },
-            { status: 502 },
-          );
+          return Response.json({ error: "Failed to contact OpenRouter." }, { status: 502 });
         }
       },
     },
