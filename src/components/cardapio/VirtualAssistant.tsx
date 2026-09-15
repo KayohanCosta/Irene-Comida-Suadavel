@@ -326,18 +326,12 @@ Nosso WhatsApp oficial é ${WHATSAPP}.
 
 ATENÇÃO CRÍTICA: Se o cliente fizer perguntas altamente técnicas, personalizadas ou sensíveis (tais como: intolerâncias severas, alergias graves, planos alimentares médicos específicos descritos por nutricionistas detalhando gramas específicas de macros para reembalar, ou sobre frete/entrega especial), ou se você não souber responder com certeza, você DEVE responder de forma muito educada dizendo: "Essa é uma excelente pergunta e muito importante para a sua saúde/logística! Para te dar a melhor orientação e atenção pessoalizada de pertinho, vou te encaminhar para falar diretamente com a Irene no WhatsApp." e sugira que clique no botão verde que aparecerá no chat.`;
 
-    const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
     const model = import.meta.env.VITE_OPENROUTER_MODEL || "openai/gpt-oss-120b:free";
 
-    if (!apiKey) {
-      throw new Error("VITE_OPENROUTER_API_KEY is not defined in environments.");
-    }
-
     try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      const response = await fetch("/api/openrouter", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${apiKey}`,
           "Content-Type": "application/json",
           "HTTP-Referer": "https://irenecomidasaudavel.com.br",
           "X-Title": "Irene Comida Saudavel Chatbot",

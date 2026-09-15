@@ -233,20 +233,12 @@ function AdminPage() {
     setIsAiLoading(true);
     showToast("Gerando prato saudável com IA... 🧑‍🍳", "info");
 
-    const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
     const model = import.meta.env.VITE_OPENROUTER_MODEL || "openai/gpt-oss-120b:free";
 
-    if (!apiKey) {
-      showToast("Configuração ausente: insira VITE_OPENROUTER_API_KEY no arquivo .env", "error");
-      setIsAiLoading(false);
-      return;
-    }
-
     try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      const response = await fetch("/api/openrouter", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${apiKey}`,
           "Content-Type": "application/json",
           "HTTP-Referer": "https://irenecomidasaudavel.com.br",
           "X-Title": "Irene Comida Saudavel",
