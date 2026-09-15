@@ -60,7 +60,8 @@ Evita erros de carregamento e reduz custos de banda:
 
 ## 🔒 Segurança & Boas Práticas
 * **Isolamento de Credenciais**: O arquivo `.gitignore` foi rigorosamente atualizado para ignorar arquivos de variáveis de ambiente (`.env`, `.env.local`, etc.).
-* **Zero Segredos Hardcoded**: Todas as chaves e segredos da API do OpenRouter e Supabase foram isolados do repositório público e são consumidos estritamente das variáveis de ambiente (`import.meta.env`).
+* **OpenRouter Server-Side**: A chave privada `OPENROUTER_API_KEY` é mantida no servidor e usada por um proxy em `/api/openrouter`; ela não é exposta ao navegador via `import.meta.env`.
+* **Zero Segredos Hardcoded**: Nenhuma chave privada da API do OpenRouter é mantida no código-fonte público.
 
 ---
 
@@ -82,8 +83,10 @@ Certifique-se de possuir o [Node.js](https://nodejs.org/) instalado em sua máqu
 Crie um arquivo `.env` na raiz do projeto contendo as credenciais de desenvolvimento (não comente ou envie este arquivo ao GitHub):
 
 ```env
-# Configurações do Assistente Virtual IA (OpenRouter)
-VITE_OPENROUTER_API_KEY=sua_chave_privada_aqui
+# Configurações do servidor para o Assistente Virtual IA (OpenRouter)
+OPENROUTER_API_KEY=sua_chave_privada_aqui
+
+# Configuração pública do modelo usado pelo cliente
 VITE_OPENROUTER_MODEL=openai/gpt-oss-120b:free
 
 # Configurações do Banco de Dados / Supabase

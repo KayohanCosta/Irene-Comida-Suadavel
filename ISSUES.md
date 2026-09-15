@@ -71,10 +71,14 @@ Abaixo está o detalhamento técnico e a documentação das novas funcionalidade
 * **Critérios de Aceitação**:
   - [x] Atualização do arquivo `.gitignore` para bloquear o rastreamento do arquivo `.env` e quaisquer variáveis de ambiente locais.
   - [x] Remoção completa de chaves de API privadas hardcoded nos arquivos de código-fonte.
-  - [x] Validação ativa das variáveis de ambiente na inicialização da chamada com toasts informativos ao desenvolvedor/admin.
+  - [x] Chave do OpenRouter mantida exclusivamente no servidor via `OPENROUTER_API_KEY`, sem leitura de segredo por `import.meta.env` no cliente.
+  - [x] Proxy `/api/openrouter` valida a presença da chave no servidor e retorna erro HTTP tratável quando a configuração está ausente.
 * **Tarefas Técnicas Realizadas**:
   - Inclusão das regras `.env`, `.env.local`, `.env.*` e `*.env` no arquivo `.gitignore`.
-  - Remoção de fallback de strings de chaves privadas (`sk-or-v1-...`) em `admin.tsx` e `VirtualAssistant.tsx`, delegando a leitura exclusivamente à variável de ambiente `import.meta.env.VITE_OPENROUTER_API_KEY`.
+  - Remoção de fallback de strings de chaves privadas (`sk-or-v1-...`) em `admin.tsx` e `VirtualAssistant.tsx`.
+  - Criação do proxy server-side `src/routes/api/openrouter.ts`, mantendo a chave fora do bundle do navegador.
+  - Atualização do `vite.config.ts` para habilitar o runtime server-side do TanStack Start.
+  - Inclusão de `.env.example` com as variáveis públicas e privadas esperadas, sem valores reais.
 
 ---
-*Status: Fase 2 totalmente integrada, testada, auditada contra vazamentos de dados e pronta para o push!* 🌿🔒🚀
+*Status: Correção de segurança aplicada na branch de trabalho; build, lint e PR ainda aguardam aprovação do diff.* 🌿🔒🚀
