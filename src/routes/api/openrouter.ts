@@ -9,7 +9,7 @@ export const Route = createFileRoute("/api/openrouter")({
         if (!apiKey) {
           return Response.json(
             { error: "OPENROUTER_API_KEY is not configured on the server." },
-            { status: 500 }
+            { status: 500 },
           );
         }
 
@@ -18,7 +18,7 @@ export const Route = createFileRoute("/api/openrouter")({
           const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
-              "Authorization": `Bearer ${apiKey}`,
+              Authorization: `Bearer ${apiKey}`,
               "Content-Type": "application/json",
               "HTTP-Referer": "https://irenecomidasaudavel.com.br",
               "X-Title": "Irene Comida Saudavel",
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/api/openrouter")({
         } catch {
           return Response.json(
             { error: "Failed to contact OpenRouter." },
-            { status: 502 }
+            { status: 502 },
           );
         }
       },
